@@ -2,12 +2,13 @@
 
 # 黄杨钿甜"230万耳环事件"舆情分析图表
 
+```html
 <!DOCTYPE html>
 <html>
 <head>
     <title>黄杨钿甜"230万耳环事件"舆情分析图表</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- <   style>
+    <style>
         .chart-container {
             width: 80%;
             margin: 20px auto;
@@ -53,7 +54,7 @@
 </div>
 
 <div class="table-container">
-    < classdiv="chart-title">表1：黄杨钿甜事件舆情热度阶段划分</div>
+    <div class="chart-title">表1：黄杨钿甜事件舆情热度阶段划分</div>
     <table>
         <tr>
             <th>阶段</th>
@@ -107,8 +108,8 @@
         type: 'pie',
         data: {
             labels: ['微博', '新闻客户端', '短视频平台', '论坛社区', '微信公众号'],
-            datasets: [ {
-                data: [42.3, 28.5, 15.2, 97., 4.3],
+            datasets: [{
+                data: [42.3, 28.5, 15.2, 9.7, 4.3],
                 backgroundColor: [
                     '#FF6384',
                     '#36A2EB',
@@ -116,7 +117,7 @@
                     '#4BC0C0',
                     '#9966FF'
                 ]
-            } ]
+            }]
         },
         options: {
             responsive: true,
@@ -141,13 +142,13 @@
         type: 'bar',
         data: {
             labels: ['公职人员廉洁性', '慈善资金透明度', '未成年人高消费', '艺考公平性', '舆论监督边界', '其他'],
-            datasets: [ {
+            datasets: [{
                 label: '讨论占比(%)',
                 data: [38.7, 22.4, 18.9, 12.5, 5.3, 2.2],
                 backgroundColor: 'rgba(54, 162, 235, 0.7)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
-            } ]
+            }]
         },
         options: {
             responsive: true,
@@ -169,14 +170,14 @@
         type: 'pie',
         data: {
             labels: ['负面情绪', '中立态度', '正面情绪'],
-            datasets: [ {
+            datasets: [{
                 data: [62.3, 28.5, 9.2],
                 backgroundColor: [
                     '#FF6384',
                     '#36A2EB',
                     '#4BC0C0'
                 ]
-            } ]
+            }]
         },
         options: {
             responsive: true,
@@ -194,10 +195,6 @@
             }
         }
     });
-</script>
-
-</body>
-</html>
 </script>
 
 </body>
