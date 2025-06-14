@@ -1,49 +1,200 @@
 # 舆情期末
-舆情期末
+
 # 黄杨钿甜"230万耳环事件"舆情分析图表
 
-## 图1：舆情传播平台分布
+<!DOCTYPE html>
+<html>
+<head>
+    <title>黄杨钿甜"230万耳环事件"舆情分析图表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .chart-title {
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .table-container {
+            margin: 30px auto;
+            width: 90%;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
 
-```html
-<div style="width:80%;margin:0 auto;">
-  <canvas id="platformChart"></canvas>
+<div class="chart-container">
+    <div class="chart-title">图1：舆情传播平台分布</div>
+    <canvas id="platformChart"></canvas>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="chart-container">
+    <div class="chart-title">图2：网民讨论话题分布</div>
+    <canvas id="topicChart"></canvas>
+</div>
+
+<div class="chart-container">
+    <div class="chart-title">图3：网民情感倾向分布</div>
+    <canvas id="sentimentChart"></canvas>
+</div>
+
+<div class="table-container">
+    <div class="chart-title">表1：黄杨钿甜事件舆情热度阶段划分</div>
+    <table>
+        <tr>
+            <th>阶段</th>
+            <th>时间</th>
+            <th>关键事件</th>
+            <th>热度峰值</th>
+            <th>主要传播平台</th>
+        </tr>
+        <tr>
+            <td>发酵期</td>
+            <td>5.11-5.14</td>
+            <td>耳环照片发布、奢侈品鉴定</td>
+            <td>5,000</td>
+            <td>微博、小红书</td>
+        </tr>
+        <tr>
+            <td>爆发期</td>
+            <td>5.15-5.17</td>
+            <td>父亲公务员背景曝光</td>
+            <td>20,000</td>
+            <td>微博、知乎、头条</td>
+        </tr>
+        <tr>
+            <td>高潮期</td>
+            <td>5.18-5.23</td>
+            <td>资产来源质疑、公司变更</td>
+            <td>25,000</td>
+            <td>全网平台</td>
+        </tr>
+        <tr>
+            <td>消退期</td>
+            <td>5.24-6.10</td>
+            <td>官方通报、内容删除</td>
+            <td>10,000</td>
+            <td>新闻客户端</td>
+        </tr>
+        <tr>
+            <td>长尾期</td>
+            <td>6.11至今</td>
+            <td>高考偶遇、制度讨论</td>
+            <td>5,000</td>
+            <td>垂直论坛</td>
+        </tr>
+    </table>
+</div>
+
 <script>
-  new Chart(document.getElementById('platformChart'), {
-    type: 'pie',
-    data: {
-      labels: ['微博 42.3%', '新闻客户端 28.5%', '短视频平台 15.2%', '论坛社区 9.7%', '微信公众号 4.3%'],
-      datasets: [{
-        data: [42.3, 28.5, 15.2, 9.7, 4.3],
-        backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF']
-      }]
-    },
-    options: {
-      plugins: {
-        datalabels: {
-          formatter: (v) => v + '%',
-          color: '#fff',
-          font: { weight: 'bold', size: 14 }
+    // 平台分布饼图
+    const platformCtx = document.getElementById('platformChart').getContext('2d');
+    const platformChart = new Chart(platformCtx, {
+        type: 'pie',
+        data: {
+            labels: ['微博', '新闻客户端', '短视频平台', '论坛社区', '微信公众号'],
+            datasets: [{
+                data: [42.3, 28.5, 15.2, 9.7, 4.3],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
         }
-      }
-    },
-    plugins: [{
-      id: 'datalabels',
-      afterDraw: (chart) => {
-        const {ctx} = chart;
-        chart.data.datasets.forEach((dataset, i) => {
-          const meta = chart.getDatasetMeta(i);
-          meta.data.forEach((element, index) => {
-            const {x, y} = element.tooltipPosition();
-            ctx.fillStyle = '#fff';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(dataset.data[index] + '%', x, y);
-          });
-        });
-      }
-    }]
-  });
+    });
+
+    // 话题分布柱状图
+    const topicCtx = document.getElementById('topicChart').getContext('2d');
+    const topicChart = new Chart(topicCtx, {
+        type: 'bar',
+        data: {
+            labels: ['公职人员廉洁性', '慈善资金透明度', '未成年人高消费', '艺考公平性', '舆论监督边界', '其他'],
+            datasets: [{
+                label: '讨论占比(%)',
+                data: [38.7, 22.4, 18.9, 12.5, 5.3, 2.2],
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '占比(%)'
+                    }
+                }
+            }
+        }
+    });
+
+    // 情感倾向饼图
+    const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+    const sentimentChart = new Chart(sentimentCtx, {
+        type: 'pie',
+        data: {
+            labels: ['负面情绪', '中立态度', '正面情绪'],
+            datasets: [{
+                data: [62.3, 28.5, 9.2],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#4BC0C0'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
 </script>
+
+</body>
+</html>
