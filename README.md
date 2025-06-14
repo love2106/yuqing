@@ -1,7 +1,9 @@
 # 舆情期末
 
 # 黄杨钿甜"230万耳环事件"舆情分析图表
-
+![](image/1.png)
+![](image/2.png)
+![](image/3.png)
 ```html
 <!DOCTYPE html>
 <html>
